@@ -1,3 +1,5 @@
-export default function Page() {
-  return <p>invoices page</p>;
-}
+import { Metadata } from 'next';
+ 
+export const metadata: Metadata = {
+  title: 'Invoices',
+};
