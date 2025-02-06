@@ -139,7 +139,6 @@ export async function deleteInvoice(id: string) {
 }
 
 // non funziona perché è server code che viene runnato da client! devo autenticare manualmente processando io i dati in un file con codice client
-
 export async function authenticate(
   prevState: string | undefined,
   formData: FormData
