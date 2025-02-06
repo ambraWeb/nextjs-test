@@ -1,4 +1,5 @@
 ## appunti
+- conviene sempre fare un progetto con **AppRouter** (moderno) invece che PagesRouter
 - c'è una gerarchia di discendenza delle proprietà di alcuni file specifici di  Next, tra cui `layout.tsx` e `loading.tsx`
 - i **server component** sono recenti e permettono di evitarsi uno strato di API sul server facendo chiamate server side direttamente all'interno del codice sorgente frontend. supportano async await e non necessitano di useEffect o useState (come fosse uno strato api stateless!). non sono manipolabili dal client e sono default su next
 - libreria **postgres.js** per db contiene protezioni vs iniezioni sql
@@ -76,6 +77,45 @@
     - sitemap.xml
   - Puoi usare i file col file-based oppure generare tutto tu, e next li prende per generare gli `<head>` per ogni pagina
 
+# COSE EXTRA IMPORTANTI
+- ### **ROUTING PARALLELO E CONDIZIONALE**:
+  - scrivendo `/@folder` si creano route **parallele**, basta che le porto come prop al layout superiore per averle in page simultaneamente. Senza ulteriori modifiche si hanno due page.tsx che displayano nella stessa pagina
+  ```tsx
+  export default function Layout({sx, dx}: Props) {
+    return (
+      <div>
+        <div className='pageSx'>{sx}</div>
+        <div className='pageDx'>{dx}</div>
+      </div>
+    )
+  }
+  ```
+    sennò si possono visualizzare condizionalmente, utile nelle dashboard tipo con un login (non qui)
+    ```tsx
+    export default function Layout({sx, dx}: Props) {
+      return (
+        <div>
+          {sxMode ? sx : dx}
+        </div>
+      )
+    }
+    ```
+    e che me ne faccio?
+    **PATTERN PER MODALI**
+
+    con funzionalità che sarebbero complesse da implementare:
+    - il contenuto della modale diventa **condivisibile tramite url**
+    - il contesto viene mantenuto, **al refresh la modale può rimanere aperta**
+    - **navigando indietro la modale viene chiusa** invece di riportare alla route precedente
+    - e di conseguenza **navigando in avanti nel** caso, **si riapre** la modale! (un po' come la navigazione a strati da mobile)
+- ### **INTERCETTAZIONE DELLE ROUTE**:
+  - Permette di caricare una route da un'altra parte della webapp nel layout attuale!
+    - a che mi serve? immagina usarlo con una route dinamica immessa in una sua figlia (ie: mostrare la user card a lato di una sezione di setting specifica dello user, senza dover riportare tutti i dati di nuovo)
+  - scrivendo puntini tra parentesi prima di una folder, si possono 'matchare' route in base alla posizione, i puntini rappresentando praticamente i cd di directory
+    - (.) to match segments on the same level
+    - (..) to match segments one level above
+    - (..)(..) to match segments two levels above
+    - (...) to match segments from the root app directory
 
 ## domande
 1. capitolo 7 sul fetching (**RISOLTO**)

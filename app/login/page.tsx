@@ -1,6 +1,12 @@
 import AcmeLogo from '@/app/ui/acme-logo';
 import LoginForm from '@/app/ui/login-form';
+import { Metadata } from 'next';
 import { Suspense } from 'react';
+
+// per testare i metadai targettati ad una pagina con aggiunta del placeholder del template
+export const metadata: Metadata = {
+  title: 'Login Page'
+}
  
 export default function LoginPage() {
   return (
