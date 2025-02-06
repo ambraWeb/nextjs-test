@@ -85,3 +85,4 @@
   - il div che displaya l'error dell'amount non funziona (e nemmeno l'aria) anche se la logica è la stessa di quello prefatto, anche se adattata all'handling dell'amount invece del customer
 3. capitolo 15:
   - non trovo una migration guide da nextauthjs ad authjs, ma leggendo il set up, per il sign in, bisogna wrappare il form e mapparlo con argomento i provider: ma io nell'esercizio ho l'array dei provider vuoto
+  - signIn è una funzione client che viene chiamata da server, ho provato ad usare use client, ho provato a fare un file separato per authenticate, poi ho provato a fare un file helper per una callback che lo richiamasse, ma signin continua a dare problemi
